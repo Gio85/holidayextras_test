@@ -1,0 +1,31 @@
+{
+    "collectCoverage": false,
+    "restoreMocks": true,
+    "clearMocks": true,
+    "resetMocks": true,
+    "coverageReporters": ["json", "html"],
+    "collectCoverageFrom": [
+        "**/*.{ts,tsx}",
+        "!**/node_modules/**",
+        "!**/dist/**",
+        "!**/*.spec.ts",
+        "!**/local.ts",
+        "!**/bootstrap.ts",
+        "!**/authenticateAWS.ts"
+    ],
+    "coverageThreshold": {
+        "global": {
+            "statements": 70,
+            "branches": 70,
+            "functions": 50,
+            "lines": 70
+        }
+    },
+    "modulePathIgnorePatterns": ["dist"],
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "globals": {
+        "__DEV__": true
+    },
+    "testRegex": ["(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$"]
+}
