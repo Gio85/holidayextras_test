@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  description: "Holiday Extras code test"
+  version: "1.0.0"
+  title: "Holiday Extras"
+host: "localhost:3000"
+tags:
+- name: "users"
+  description: "Operations about user"
+schemes:
+- "http"
+paths:
+  /users:
+    post:
+      tags:
+      - "users"
+      summary: "Create user"
+      description: "This will cerate an user entity"
+      operationId: "createUser"
+      produces:
+      
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+    get:
+      tags:
+      - "users"
+      summary: "Get users list"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "User not found"
+  /users/{userId}:
+    get:
+      tags:
+      - "users"
+      summary: "Get user by user id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The id that needs to be fetched."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "User not found"
+    put:
+      tags:
+      - "users"
+      summary: "Updated user"
+      operationId: "updateUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid user supplied"
+        "404":
+          description: "User not found"
+    delete:
+      tags:
+      - "users"
+      summary: "Delete user"
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "The id that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid id supplied"
+        "404":
+          description: "User not found"
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "uuid"
+      givenName:
+        type: "string"
+      familyName:
+        type: "string"
+      email:
+        type: "string"
+      createdAt:
+        type: "string"
